@@ -9,25 +9,66 @@ function App() {
    const [currentLeagueStanding, setCurrentLeagueStandings] = useState();
 
    const getCountryLeagues = country => {
-      setCurrentLeagueStandings()
-      setCurrentLeagueInfo()
+      setCurrentLeagueStandings();
+      setCurrentLeagueInfo();
       return API.getLeaguesByCountry(country).then(data => setCurrentCountryLeagues(data.api.leagues));
    };
 
    const listFromCountryLeagues = countryLeagues => {
-      return countryLeagues?.map(leagueObj => {
+      const leaguesWithStandings = countryLeagues?.filter(league => {
+         return league.standings > 0;
+      });
+
+      const leaguesWithoutStandings = countryLeagues?.filter(league => {
+         return league.standings === 0;
+      });
+
+      const listOfActiveComps = leaguesWithStandings?.map(leagueObj => {
          return (
-            <li key={leagueObj.league_id} onClick={() => individualLeagueClickHandler(leagueObj.league_id)}>
-               {leagueObj.name}
-            </li>
+            <div className='active-competitions'>
+               <li
+                  key={leagueObj.league_id}
+                  onClick={() => individualLeagueClickHandler(leagueObj.league_id)}>
+                  {leagueObj.name}
+               </li>
+            </div>
          );
       });
+
+      const listOfInactiveComps = leaguesWithoutStandings?.map(leagueObj => {
+         return (
+            <div className='inactive-competitions'>
+               <li
+                  key={leagueObj.league_id}
+                  onClick={() => individualLeagueClickHandler(leagueObj.league_id)}>
+                  {leagueObj.name}
+               </li>
+            </div>
+         );
+      });
+
+      return (
+         <div className='competitions-container'>
+            <h1>Active Competitions</h1>
+            {listOfActiveComps} <br />
+            {leaguesWithoutStandings?.length > 0 ? (
+               <>
+                  <h1>Inactive Competitions</h1>
+                  {listOfInactiveComps}{" "}
+               </>
+            ) : null}
+         </div>
+      );
    };
 
    const buildLeagueTableList = () => {
-      if (!currentLeagueStanding) return 
+      if (!currentLeagueStanding) return;
       return currentLeagueStanding[0]?.map(teamObj => {
-         return <li key={teamObj.teamName}>{teamObj.teamName} ~ {teamObj.points} pts.</li>;
+         return (
+            <li key={teamObj.teamName}>
+               {teamObj.teamName} ~ {teamObj.points} pts.
+            </li>
+         );
       });
    };
 
@@ -40,7 +81,7 @@ function App() {
    const setLeagueStandings = leagueId => {
       return API.getLeagueStandings(leagueId).then(data => setCurrentLeagueStandings(data.api.standings));
    };
-   
+
    return (
       <div className='app-container'>
          <div className='app-content'>
