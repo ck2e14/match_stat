@@ -7,6 +7,8 @@ function App() {
    const [currentCountryLeagues, setCurrentCountryLeagues] = useState();
    const [currentLeagueInfo, setCurrentLeagueInfo] = useState();
    const [currentLeagueStanding, setCurrentLeagueStandings] = useState();
+   const [currentTeamInfo, setCurrentTeamInfo] = useState();
+   const [currentTeamFixtures, setCurrentTeamFixtures] = useState();
 
    const getCountryLeagues = country => {
       setCurrentLeagueStandings();
@@ -65,11 +67,16 @@ function App() {
       );
    };
 
+   const teamInTableClickHandler = teamId => {
+      API.getSpecificTeamInfo(teamId).then(data => setCurrentTeamInfo(data));
+      API.getFixturesByTeam(teamId).then(data => setCurrentTeamFixtures(data));
+   };
+
    const buildLeagueTableList = () => {
       if (!currentLeagueStanding) return;
       return currentLeagueStanding[0]?.map(teamObj => {
          return (
-            <li key={teamObj.teamName}>
+            <li key={teamObj.teamName} onClick={() => teamInTableClickHandler(teamObj.team_id)}>
                {teamObj.teamName} ~ {teamObj.points} pts.
             </li>
          );

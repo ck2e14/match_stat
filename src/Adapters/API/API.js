@@ -22,6 +22,31 @@ const getLeagueInfo = leagueId => {
    }).then(resp => resp.json())
 };
 
+const getSpecificTeamInfo = teamID => {
+   return fetch(`${API_BASE_URL}teams/team/${teamID}`, {
+      method: "GET",
+      headers: {
+         "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
+         "x-rapidapi-key": API_KEY,
+      },
+   }).then(resp => resp.json())
+}
+
+const getFixturesByTeam = teamID => {
+   return fetch(`${API_BASE_URL}fixtures/team/${teamID}?timezone=Europe/London`, {
+      method: "GET",
+      headers: {
+         "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
+         "x-rapidapi-key": API_KEY,
+      },
+   }).then(resp => resp.json())
+   .then(data => {
+      return data.api.fixtures.filter(fixture => {
+         return fixture.statusShort === 'NS'
+      })
+   })
+}
+
 const getLeagueStandings = leagueId => {
    return fetch(`${API_BASE_URL}leagueTable/${leagueId}`, {
       method: "GET",
@@ -35,5 +60,7 @@ const getLeagueStandings = leagueId => {
 export default {
    getLeaguesByCountry,
    getLeagueInfo,
-   getLeagueStandings
+   getLeagueStandings,
+   getSpecificTeamInfo,
+   getFixturesByTeam
 };
