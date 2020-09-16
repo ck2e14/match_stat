@@ -15,6 +15,7 @@ function App() {
    };
 
    const listFromCountryLeagues = countryLeagues => {
+      // Function first splits into cup or league competition. 
       const leaguesWithStandings = countryLeagues?.filter(league => {
          return league.standings > 0;
       });
@@ -23,7 +24,7 @@ function App() {
          return league.standings === 0;
       });
 
-      const listOfActiveComps = leaguesWithStandings?.map(leagueObj => {
+      const listOfLeagueComps = leaguesWithStandings?.map(leagueObj => {
          return (
             <div className='active-competitions'>
                <li
@@ -35,7 +36,7 @@ function App() {
          );
       });
 
-      const listOfInactiveComps = leaguesWithoutStandings?.map(leagueObj => {
+      const listOfCupComps = leaguesWithoutStandings?.map(leagueObj => {
          return (
             <div className='inactive-competitions'>
                <li
@@ -49,14 +50,14 @@ function App() {
 
       return (
          <div className='competitions-container'>
-            <h1>Active Competitions</h1>
-            {listOfActiveComps} <br />
-            {leaguesWithoutStandings?.length > 0 ? (
+            <h1>League Competitions</h1>
+            {listOfLeagueComps} <br />
+            {leaguesWithoutStandings?.length > 0 && (
                <>
-                  <h1>Inactive Competitions</h1>
-                  {listOfInactiveComps}{" "}
+                  <h1>Cup Competitions</h1>
+                  {listOfCupComps}{" "}
                </>
-            ) : null}
+            )}
          </div>
       );
    };
