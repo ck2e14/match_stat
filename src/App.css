@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Poiret+One&display=swap');
+
 .app-container {
    height: 100vh;
    width: 100vw;
    position: relative;
+   background: rgb(77, 253, 185);
 }
 
 .app-content {
@@ -9,8 +12,11 @@
    width: 95vw;
    position: absolute;
    overflow: hidden;
-   border: 2px solid rgb(0, 255, 76);
+   border: 2px solid rgb(68, 68, 68);
+   border-radius: .5vw;
+   background: rgb(26, 26, 26);
    align-items: center;
+   color: white;
    left: 50%;
    top: 50%;
    transform: translate(-50%, -50%);
@@ -22,18 +28,53 @@
    position: relative;
    top: 2%;
    left: 50%;
-   border: 2px solid black;
    transform: translateX(-50%);
    flex: 1;
+   /* border: 2px solid rgb(58, 58, 58); */
+   border-radius: .5vw;
 }
 
 .app-main-content-panel {
    position: absolute;
    flex: 10;
-   border: 2px solid red;
+   border: 2px solid rgb(58, 58, 58);
    width: 90vw;
-   height: 80vh;
+   font-family: 'Poiret One', cursive;
+   height: 77vh;
+   border-radius: .5vw;
    left: 50%;
    top: 15%;
    transform: translateX(-50%);
+}
+
+.choose-country-league{
+   position: absolute;
+   top: 2%;
+   left: 50%;
+   transform: translate(-50%);
+}
+
+.competitions-container {
+   display: flex;
+   flex-direction: row;
+   min-width: 50vw;
+   justify-content: center;
+}
+
+.league-comps {
+   margin: 5%
+}
+
+.cup-comps {
+   margin: 5%;
+}
+
+li {
+   cursor: pointer;
+   font-size: 1vw;
+   font-weight: bold;
+}
+
+li:hover {
+   color: rgb(108, 255, 140);
 }

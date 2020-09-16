@@ -15,7 +15,6 @@ function App() {
    };
 
    const listFromCountryLeagues = countryLeagues => {
-      // Function first splits into cup or league competition. 
       const leaguesWithStandings = countryLeagues?.filter(league => {
          return league.standings > 0;
       });
@@ -50,14 +49,18 @@ function App() {
 
       return (
          <div className='competitions-container'>
-            <h1>League Competitions</h1>
-            {listOfLeagueComps} <br />
-            {leaguesWithoutStandings?.length > 0 && (
-               <>
-                  <h1>Cup Competitions</h1>
-                  {listOfCupComps}{" "}
-               </>
-            )}
+            <div className='league-comps'>
+               <h1>League Competitions</h1>
+               {listOfLeagueComps} <br />
+            </div>
+            <div className='cup-comps'>
+               {leaguesWithoutStandings?.length > 0 && (
+                  <>
+                     <h1>Cup Competitions</h1>
+                     {listOfCupComps}{" "}
+                  </>
+               )}
+            </div>
          </div>
       );
    };

@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
+
 .league-selector-container {
    position: absolute;
    display: flex;
    flex-direction: row;
-   justify-content: center;
+   justify-content: space-evenly;
    align-items: center;
-   width: 100%;
+   width: 70%;
+   left: 50%;
+   transform: translate(-50%);
    height: 100%;
 }
 
@@ -14,3 +18,47 @@
 .league-list {
 
 }
+
+.league-item-container {
+   font-size: 1.5vw;
+   position: relative;
+   height: 60%;
+   font-weight: bold;
+   font-family: 'Bungee Shade', cursive;
+   color: rgb(255, 255, 255);
+   transition: all .25s;
+   cursor: pointer;
+}
+
+
+
+.league-item-container:nth-child(1):hover {
+   color: rgb(177, 92, 92);
+   margin-top: -1%;
+}
+
+.league-item-container:nth-child(2):hover {
+   color: rgb(92, 150, 177);
+   margin-top: -1%;
+}
+
+.league-item-container:nth-child(3):hover {
+   color: rgb(236, 186, 91);
+   margin-top: -1%;
+}
+
+.league-item-container:nth-child(4):hover {
+   color: rgb(236, 91, 217);
+   margin-top: -1%;
+}
+
+.league-item-container:nth-child(5):hover {
+   color: rgb(91, 93, 236);
+   margin-top: -1%;
+}
+
+.league-item-container:nth-child(6):hover {
+   color: rgb(7, 255, 255);
+   margin-top: -1%;
+}
+

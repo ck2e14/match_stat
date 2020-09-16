@@ -17,16 +17,16 @@ const LeagueSelector = props => {
          <div className='league-item-container' onClick={() => handleCountryClick("france")}>
             &nbsp;FRENCH &nbsp;
          </div>
-         <div className='league-item-container' onClick={() => handleCountryClick("spain")}>
+         <div className='league-item-container' onClick={() => handleCountryClick('spain')}>
             &nbsp;SPANISH &nbsp;
          </div>
-         <div className='league-item-container' onClick={() => handleCountryClick("italy")}>
+         <div className='league-item-container' onClick={() => handleCountryClick('italy')}>
             &nbsp;ITALIAN &nbsp;
          </div>
-         <div className='league-item-container' onClick={() => handleCountryClick("germany")}>
+         <div className='league-item-container' onClick={() => handleCountryClick('germany')}>
             &nbsp;GERMAN &nbsp;
          </div>
-         <div className='league-item-container' onClick={() => handleCountryClick("netherlands")}>
+         <div className='league-item-container' onClick={() => handleCountryClick('netherlands')}>
             &nbsp;DUTCH &nbsp;
          </div>
       </div>
